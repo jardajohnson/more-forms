@@ -8,8 +8,8 @@ const Form = (props) => {
 	const [confirmPassword, setConfirmPassword] = useState('');
 
 	return (
-		<div className=''>
-			<form className='flex'>
+		<div className='container'>
+			<form className='flex flex-col gap-5'>
 				<div>
 					<label>First Name: </label>
 
@@ -17,12 +17,14 @@ const Form = (props) => {
 						type='text'
 						onChange={(e) => setFirstName(e.target.value)}
 					/>
+					{firstName.length < 2 ? (
+						<p className='inline text-red-600'>
+							Name must be at least 2 characters
+						</p>
+					) : (
+						''
+					)}
 				</div>
-				{firstName.length < 2 ? (
-					<p>Name must be at least 2 characters</p>
-				) : (
-					''
-				)}
 				<div>
 					<label>Last Name: </label>
 
@@ -39,7 +41,7 @@ const Form = (props) => {
 						onChange={(e) => setEmail(e.target.value)}
 					/>
 					{email.length < 5 ? (
-						<p>Email must be at least 5 characters</p>
+						<p className='inline text-red-600'>Email must be at least 5 characters</p>
 					) : (
 						''
 					)}
@@ -52,7 +54,7 @@ const Form = (props) => {
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 					{password.length < 8 ? (
-						<p>Passwords must be at least 8 characters</p>
+						<p className='inline text-red-600'>Passwords must be at least 8 characters</p>
 					) : (
 						''
 					)}
@@ -65,7 +67,7 @@ const Form = (props) => {
 						onChange={(e) => setConfirmPassword(e.target.value)}
 					/>
 					{confirmPassword !== password ? (
-						<p>Passwords must match!</p>
+						<p className='inline text-red-600'>Passwords must match!</p>
 					) : (
 						''
 					)}
